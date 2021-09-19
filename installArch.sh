@@ -40,13 +40,19 @@ EOF
 
 echo "#### FORMATTING ####"
 # Format disks
+mkfs.fat -F32 $TARGET_DISK"p1" 
 #mkswap $TARGET_DISK"p2"
 mkfs.btrfs -f $TARGET_DISK"p3" 
+
+
 
 echo "#### MOUNTING ####"
 # Mount new disks
 mount $TARGET_DISK"p3" /mnt
+mount $TARGET_DISK"p1" /mnt/efi
 #swapon $TARGET_DISK"p2"
+
+mkdir /mnt/efi
 
 echo "#### PACSTRAP ####"
 # Pacstrap baby
@@ -54,6 +60,7 @@ pacstrap /mnt base linux linux-firmware
 
 echo "#### COPY SCRIPT ####"
 cp installArchChrooted.sh /mnt/installArchChrooted.sh
+chmod +x /mnt/installArchChrooted.sh
 
 echo "#### FSTAB ####"
 # Create fstab
