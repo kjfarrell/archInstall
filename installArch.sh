@@ -44,6 +44,7 @@ EOF
 echo "#### FORMATTING ####"
 # Format disks
 #mkswap $TARGET_DISK"p2"
+mkfs.fat -F32 $TARGET_DISK"p1" 
 mkfs.btrfs -f $TARGET_DISK"p3" 
 
 echo "#### MOUNTING ####"
