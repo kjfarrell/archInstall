@@ -54,6 +54,7 @@ pacstrap /mnt base linux linux-firmware
 
 echo "#### COPY SCRIPT ####"
 cp installArchChrooted.sh /mnt/installArchChrooted.sh
+chmod +x /mnt/installArchChrooted.sh
 
 echo "#### FSTAB ####"
 # Create fstab
