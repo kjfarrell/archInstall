@@ -44,13 +44,15 @@ mkfs.fat -F32 $TARGET_DISK"p1"
 #mkswap $TARGET_DISK"p2"
 mkfs.btrfs -f $TARGET_DISK"p3" 
 
-mkdir /mnt/efi
+
 
 echo "#### MOUNTING ####"
 # Mount new disks
 mount $TARGET_DISK"p3" /mnt
 mount $TARGET_DISK"p1" /mnt/efi
 #swapon $TARGET_DISK"p2"
+
+mkdir /mnt/efi
 
 echo "#### PACSTRAP ####"
 # Pacstrap baby
