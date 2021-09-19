@@ -18,4 +18,4 @@ echo "#### MKINITCPIO ####"
 echo "#### SET ROOT PASSWORD ####"
 echo "root:"$passvar | chpasswd
 pacman -S grub efibootmgr os-prober --noconfirm
-grub-install --target=x86_64-efi --efi-directory=esp --boot-directory=esp --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/efi --boot-directory=esp --bootloader-id=GRUB
