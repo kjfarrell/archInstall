@@ -40,11 +40,15 @@ EOF
 
 echo "#### FORMATTING ####"
 # Format disks
+mkfs.fat -F32 $TARGET_DISK"p1" 
 #mkswap $TARGET_DISK"p2"
 mkfs.btrfs -f $TARGET_DISK"p3" 
 
+mkdir /mnt/efi
+
 echo "#### MOUNTING ####"
 # Mount new disks
+mount $TARGET_DISK"p1" /mnt/efi
 mount $TARGET_DISK"p3" /mnt
 #swapon $TARGET_DISK"p2"
 
