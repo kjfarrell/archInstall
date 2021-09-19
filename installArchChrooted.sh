@@ -19,4 +19,4 @@ echo "#### SET ROOT PASSWORD ####"
 echo "root:"$passvar | chpasswd
 pacman -S grub efibootmgr os-prober --noconfirm
 grub-mkconfig -o /boot/grub/grub.cfg
-grub-install --target=i386-pc /dev/nvme0n1
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
