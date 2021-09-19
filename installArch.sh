@@ -48,8 +48,8 @@ mkdir /mnt/efi
 
 echo "#### MOUNTING ####"
 # Mount new disks
-mount $TARGET_DISK"p1" /mnt/efi
 mount $TARGET_DISK"p3" /mnt
+mount $TARGET_DISK"p1" /mnt/efi
 #swapon $TARGET_DISK"p2"
 
 echo "#### PACSTRAP ####"
@@ -58,6 +58,7 @@ pacstrap /mnt base linux linux-firmware
 
 echo "#### COPY SCRIPT ####"
 cp installArchChrooted.sh /mnt/installArchChrooted.sh
+chmod +x /mnt/installArchChrooted.sh
 
 echo "#### FSTAB ####"
 # Create fstab
