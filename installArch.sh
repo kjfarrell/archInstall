@@ -49,6 +49,8 @@ mkfs.btrfs -f $TARGET_DISK"p3"
 echo "#### MOUNTING ####"
 # Mount new disks
 mount $TARGET_DISK"p3" /mnt
+mkdir /mnt/efi
+mount $TARGET_DISK"p1" /mnt/efi
 #swapon $TARGET_DISK"p2"
 
 echo "#### PACSTRAP ####"
