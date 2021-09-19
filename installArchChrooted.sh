@@ -17,6 +17,6 @@ echo "#### MKINITCPIO ####"
 
 echo "#### SET ROOT PASSWORD ####"
 echo "root:"$passvar | chpasswd
-pacman -S grub os-prober --noconfirm
+pacman -S grub efibootmgr os-prober --noconfirm
 grub-mkconfig -o /boot/grub/grub.cfg
 grub-install --target=i386-pc /dev/nvme0n1
