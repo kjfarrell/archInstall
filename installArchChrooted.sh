@@ -1,7 +1,7 @@
 #!/bin/bash
 
 phase1=(
-  "fish" "openssh" "sudo" "base" "base-devel" "wget" "pacman-contrib" "python-pip" "alacritty" "neovim"
+  "fish" "openssh" "sudo" "base" "base-devel" "wget" "pacman-contrib" "python-pip" "alacritty" "neovim" "git"
 )
 
 phase2=(
