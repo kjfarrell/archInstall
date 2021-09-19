@@ -2,6 +2,9 @@
 
 TARGET_DISK="/dev/nvme0n1"
 
+sed 's/#Color/Color/' </etc/pacman.conf >/etc/pacman.conf.new
+sed 's/#ParallelDownloads/ParallelDownloads/' </etc/pacman.conf.new >/etc/pacman.conf
+
 echo "#### SETTING TIME STUFF ####"
 timedatectl set-ntp true
 
