@@ -1,8 +1,5 @@
 #!/bin/bash 
 
-#: <<'END'
-#END
-
 phase1=(
   "fish" "openssh" "sudo" "base" "base-devel" "wget" "pacman-contrib" "python-pip" "alacritty" "neovim"
 )
