@@ -1,6 +1,8 @@
 #!/bin/bash
 
 TARGET_DISK="/dev/nvme0n1"
+read -p "Enter Username: " uservar
+read -sp "Enter password: " passvar
 
 sed 's/#Color/Color/' </etc/pacman.conf >/etc/pacman.conf.new
 sed 's/#ParallelDownloads/ParallelDownloads/' </etc/pacman.conf.new >/etc/pacman.conf
@@ -53,14 +55,9 @@ mkfs.btrfs -f $TARGET_DISK"p3"
 echo "#### MOUNTING ####"
 # Mount new disks
 mount $TARGET_DISK"p3" /mnt
-<<<<<<< HEAD
-=======
 mkdir /mnt/efi
->>>>>>> 4e9663bc257da65489cc4eb6d726f6f66cb2aa0f
 mount $TARGET_DISK"p1" /mnt/efi
 #swapon $TARGET_DISK"p2"
-
-mkdir /mnt/efi
 
 echo "#### PACSTRAP ####"
 # Pacstrap baby
@@ -75,7 +72,7 @@ echo "#### FSTAB ####"
 genfstab -p -U /mnt >> /mnt/etc/fstab
 
 echo "#### CHROOT ####"
-arch-chroot /mnt ./installArchChrooted.sh
+arch-chroot /mnt ./installArchChrooted.sh $uservar $passvar
 
 
 

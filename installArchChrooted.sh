@@ -1,7 +1,7 @@
 #!/bin/bash
 
-read -p "Enter Username: " uservar
-read -sp "Enter password: " passvar
+uservar = $1
+passvar = $2
 
 phase1=(
   "fish" "openssh" "sudo" "base" "base-devel" "wget" "pacman-contrib" "python-pip" 
@@ -78,7 +78,6 @@ command cd "${tmpdir}"
 echo ${tmpdir}
 chmod 777 "${tmpdir}"
 
-
 systemctl enable sshd
 
 sed 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' </etc/sudoers >/etc/sudoers.new
@@ -110,6 +109,3 @@ rm -rf "${tmpdir}"
 
 #End stuff
 systemctl enable gdm
-
-
-
