@@ -66,8 +66,6 @@ chmod 777 /.cache
 
 echo "#### CREATE USER ####"
 # Create user
-read -p "Enter Username: " uservar
-read -sp "Enter password: " passvar
 useradd -m -G "wheel" -s /bin/fish $uservar
 echo "$uservar:$passvar" | chpasswd
 
