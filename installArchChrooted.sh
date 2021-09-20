@@ -35,7 +35,6 @@ echo "#### MKINITCPIO ####"
 echo "#### SET ROOT PASSWORD ####"
 echo "root:"$passvar | chpasswd
 
-<<<<<<< HEAD
 echo "#### INSTALL PHASE 1 ####"
 #install packages we need Phase 1
 pacman -S --noconfirm --needed ${phase1[@]} 
@@ -43,16 +42,11 @@ pip install psutil
 
 echo "#### INSTALL GRUB ####"
 #Install grub
-=======
-#Install grub
-pacman -S grub efibootmgr os-prober vim --noconfirm
->>>>>>> 4e9663bc257da65489cc4eb6d726f6f66cb2aa0f
 mkdir -p /boot/grub
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
-<<<<<<< HEAD
 echo "#### INSTALL NETWORK MANAGER ####"
 # Install network manager
 systemctl enable NetworkManager
@@ -118,9 +112,3 @@ systemctl enable gdm
 
 
 
-=======
-# Install network manager
-pacman -S networkmanager --noconfirm
-systemctl enable NetworkManager
-
->>>>>>> 4e9663bc257da65489cc4eb6d726f6f66cb2aa0f
