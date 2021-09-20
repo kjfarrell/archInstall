@@ -2,6 +2,9 @@
 
 TARGET_DISK="/dev/nvme0n1"
 
+sed 's/#Color/Color/' </etc/pacman.conf >/etc/pacman.conf.new
+sed 's/#ParallelDownloads/ParallelDownloads/' </etc/pacman.conf.new >/etc/pacman.conf
+
 echo "#### SETTING TIME STUFF ####"
 timedatectl set-ntp true
 
@@ -10,7 +13,7 @@ echo "#### Partitioning ####"
 # Partition HD
 wipefs -a $TARGET_DISK
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk $TARGET_DISK
-  o # clear the in memory partition table
+  g # clear the in memory partition table
   n # new partition
   p # primary partition
   1 # partition number 1
@@ -42,6 +45,7 @@ echo "#### FORMATTING ####"
 # Format disks
 mkfs.fat -F32 $TARGET_DISK"p1" 
 #mkswap $TARGET_DISK"p2"
+mkfs.fat -F32 $TARGET_DISK"p1" 
 mkfs.btrfs -f $TARGET_DISK"p3" 
 
 
@@ -49,6 +53,10 @@ mkfs.btrfs -f $TARGET_DISK"p3"
 echo "#### MOUNTING ####"
 # Mount new disks
 mount $TARGET_DISK"p3" /mnt
+<<<<<<< HEAD
+=======
+mkdir /mnt/efi
+>>>>>>> 4e9663bc257da65489cc4eb6d726f6f66cb2aa0f
 mount $TARGET_DISK"p1" /mnt/efi
 #swapon $TARGET_DISK"p2"
 
