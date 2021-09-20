@@ -21,6 +21,6 @@ echo "root:"$passvar | chpasswd
 #Install grub
 pacman -S grub efibootmgr os-prober --noconfirm
 mkdir -p /boot/grub
-grub-install --target=x86_64-efi --efi-directory=/efi --boot-directory=esp --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
