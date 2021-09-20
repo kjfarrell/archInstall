@@ -26,6 +26,6 @@ echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Install network manager
-pacman -S networkmanager
+pacman -S networkmanager --noconfirm
 systemctl enable NetworkManager
 
