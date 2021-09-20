@@ -6,6 +6,7 @@ read -sp "Enter password: " passvar
 phase1=(
   "fish" "openssh" "sudo" "base" "base-devel" "wget" "pacman-contrib" "python-pip" 
   "alacritty" "neovim" "efibootmgr" "os-prober" "vim" "networkmanager" "git"
+  "grub" "efibootmgr"
 )
 
 phase2=(
