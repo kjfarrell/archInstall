@@ -1,8 +1,5 @@
 #!/bin/bash
 
-uservar = $1
-passvar = $2
-
 phase1=(
   "fish" "openssh" "sudo" "base" "base-devel" "wget" "pacman-contrib" "python-pip" 
   "alacritty" "neovim" "efibootmgr" "os-prober" "vim" "networkmanager" "git"
@@ -34,7 +31,7 @@ echo "#### MKINITCPIO ####"
 # mkinitcpio -P
 
 echo "#### SET ROOT PASSWORD ####"
-echo "root:"$passvar | chpasswd
+echo "root:"$2 | chpasswd
 
 echo "#### INSTALL PHASE 1 ####"
 #install packages we need Phase 1
@@ -66,8 +63,8 @@ chmod 777 /.cache
 
 echo "#### CREATE USER ####"
 # Create user
-useradd -m -G "wheel" -s /bin/fish $uservar
-echo "$uservar:$passvar" | chpasswd
+useradd -m -G "wheel" -s /bin/fish $1
+echo "$1:$2" | chpasswd
 
 echo "#### CREATE TEMP FOLDER ####"
 # Create temp file and cd into it.
@@ -82,26 +79,26 @@ sed 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' </etc/s
 mv -f /etc/sudoers.new /etc/sudoers
 rm -f /etc/sudoers.new
 
-sudo -u $uservar git clone https://aur.archlinux.org/paru.git
+sudo -u $1 git clone https://aur.archlinux.org/paru.git
 cd paru
-sudo -u $uservar makepkg -si --noconfirm
-sudo -u $uservar paru -S --noconfirm ${phase2[@]}
+sudo -u $1 makepkg -si --noconfirm
+sudo -u $1 paru -S --noconfirm ${phase2[@]}
 
 # Dotfiles
-#mkdir /home/$uservar/.config
-sudo -u ${uservar} mkdir -p /home/${uservar}/bin/styli.sh
+#mkdir /home/$1/.config
+sudo -u ${1} mkdir -p /home/${1}/bin/styli.sh
 git clone https://github.com/kjfarrell/dotfiles.git
-cp -fr dotfiles/.config/ /home/$uservar/
-cp -fr dotfiles/bin /home/$uservar/
-chown -R $uservar /home/$uservar/.config/ /home/$uservar/bin
-chgrp -R $uservar /home/$uservar/.config/ /home/$uservar/bin
+cp -fr dotfiles/.config/ /home/$1/
+cp -fr dotfiles/bin /home/$1/
+chown -R $1 /home/$1/.config/ /home/$1/bin
+chgrp -R $1 /home/$1/.config/ /home/$1/bin
 
-sudo -u ${uservar} mkdir -p /home/${uservar}/.config/systemd/user
-sudo -u ${uservar} mkdir -p /home/${uservar}/bin/styli.sh
-sudo -u ${uservar} git clone https://github.com/thevinter/styli.sh
+sudo -u ${1} mkdir -p /home/${1}/.config/systemd/user
+sudo -u ${1} mkdir -p /home/${1}/bin/styli.sh
+sudo -u ${1} git clone https://github.com/thevinter/styli.sh
 cd styli.sh
-sudo -u ${uservar} cp styli.sh /home/${uservar}/bin/styli.sh/
-sudo -u ${uservar} cp subreddits /home/${uservar}/bin/styli.sh/
+sudo -u ${1} cp styli.sh /home/${1}/bin/styli.sh/
+sudo -u ${1} cp subreddits /home/${1}/bin/styli.sh/
 
 rm -rf "${tmpdir}"
 
